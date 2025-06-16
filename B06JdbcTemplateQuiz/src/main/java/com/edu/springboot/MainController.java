@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.edu.springboot.jdbc.IMemberService;
 import com.edu.springboot.jdbc.MemberDTO;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class MainController
@@ -30,13 +32,18 @@ public class MainController
 	
 	//회원목록
 	@RequestMapping("/list.do")
-	public String member2(Model model)
+	public String member2(Model model, MemberDTO memberDTO, HttpServletRequest req)
 	{
 		/*
 		DAO에서 회원레코드를 추가한 List를 반환해주면 이를 Model객체에 
 		저장한 후 View로 포워드한다. 
 		 */
-		model.addAttribute("memberList", dao.select());
+//		req.getParameter("searchField");
+//		req.getParameter("searchKeyword");
+		memberDTO.setSearchField(req.getParameter("searchField"));
+		memberDTO.setSearchKeyword(req.getParameter("searchKeyword"));
+		
+		model.addAttribute("memberList", dao.select(memberDTO));
 		return "list";
 	}
 	

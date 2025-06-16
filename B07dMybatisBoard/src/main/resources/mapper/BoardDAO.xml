@@ -22,8 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             SELECT * FROM myboard
             <if test="searchKeyword!=null
                and !searchKeyword.equals('')">
-            WHERE ${searchField} LIKE 
-                     '%'||#{searchKeyword}||'%'
+            WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
             </if>
             ORDER BY idx DESC
          ) Tb

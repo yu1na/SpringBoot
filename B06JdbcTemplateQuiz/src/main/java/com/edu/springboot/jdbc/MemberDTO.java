@@ -10,4 +10,7 @@ public class MemberDTO
 	private String pass;
 	private String name;
 	private String regidate;
+	
+	private String searchField;
+	private String searchKeyword;
 }

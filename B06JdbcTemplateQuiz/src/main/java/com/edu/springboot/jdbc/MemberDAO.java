@@ -34,20 +34,35 @@ public class MemberDAO implements IMemberService
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	//회원목록
+//	//회원목록
+//	@Override
+//	public List<MemberDTO> select()
+//	{
+//		//회원레코드를 가입일 기준으로 내림차순 정렬한 후 인출한다. 
+//		String sql = "SELECT * FROM member "
+//				+ " ORDER BY regidate DESC ";
+//		
+//		/*
+//			query() 메서드를 통해 select문을 실행한다. 쿼리문 실행후 반환되는
+//			ResultSet은 RowMapper가 자동으로 반복하여 DTO에 저장하고, 이를
+//			List에 추가해서 반환해준다. 즉, 레코드를 컬렉션에 저장하기 위한 
+//			반복적인 작업을 자동으로 수행해준다. 
+//		 */
+//		return jdbcTemplate.query(sql, 
+//				new BeanPropertyRowMapper<MemberDTO>(MemberDTO.class));
+//	}
+	
 	@Override
-	public List<MemberDTO> select()
+	public List<MemberDTO> select(MemberDTO memberDTO)
 	{
-		//회원레코드를 가입일 기준으로 내림차순 정렬한 후 인출한다. 
-		String sql = "SELECT * FROM member "
-				+ " ORDER BY regidate DESC ";
-		
-		/*
-			query() 메서드를 통해 select문을 실행한다. 쿼리문 실행후 반환되는
-			ResultSet은 RowMapper가 자동으로 반복하여 DTO에 저장하고, 이를
-			List에 추가해서 반환해준다. 즉, 레코드를 컬렉션에 저장하기 위한 
-			반복적인 작업을 자동으로 수행해준다. 
-		 */
+		String sql = "SELECT * FROM member ";
+				
+		if(memberDTO.getSearchKeyword()!=null && !memberDTO.getSearchKeyword().equals("")) 
+		{
+			sql += " WHERE " + memberDTO.getSearchField() + 
+					" LIKE '%" + memberDTO.getSearchKeyword() + "%' ";
+		}
+		sql += " ORDER BY regidate DESC ";
 		return jdbcTemplate.query(sql, 
 				new BeanPropertyRowMapper<MemberDTO>(MemberDTO.class));
 	}

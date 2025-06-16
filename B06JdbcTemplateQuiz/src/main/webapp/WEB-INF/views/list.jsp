@@ -8,7 +8,33 @@
 		<title>리스트</title>
 	</head>
 	<body>
+		<script type="text/javascript">
+	       function validateForm(frm) {
+	         const searchKeyword = frm.searchKeyword.value.trim();
+	         if (!searchKeyword) {
+	           alert('검색어를 입력하세요');
+	           frm.searchKeyword.focus();
+	           return false;
+	         }
+	         return true;
+	       }
+	     </script>
 		<h2>회원 리스트</h2>
+		<form method="get"
+		onsubmit="return validateForm(this);">  
+	    <table border="1" width="90%">
+		    <tr>
+		        <td align="center">
+		            <select name="searchField">
+		                <option value="id">아이디</option>
+		                <option value="name">이름</option>
+		            </select>
+		            <input type="text" name="searchKeyword" />
+		            <input type="submit" value="검색하기" />
+		        </td>
+		    </tr>
+	    </table>
+    	</form>
 		<table border="1">
 			<tr>
 				<th>아이디</th>

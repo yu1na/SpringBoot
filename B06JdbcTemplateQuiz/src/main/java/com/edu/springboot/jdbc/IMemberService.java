@@ -17,7 +17,7 @@ public interface IMemberService
 	//회원정보추가
 	public int insert(MemberDTO memberDTO);
 	//회원목록(리스트)
-	public List<MemberDTO> select();
+	public List<MemberDTO> select(MemberDTO memberDTO);
 	//회원정보조회
 	public MemberDTO selectOne(MemberDTO memberDTO);
 	//회원정보수정
