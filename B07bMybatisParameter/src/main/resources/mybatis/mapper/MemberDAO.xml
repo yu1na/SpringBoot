@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.jdbc.IMemberService">
+   
+   <select id="select"
+      parameterType="com.edu.springboot.jdbc.MemberDTO"
+      resultType="com.edu.springboot.jdbc.MemberDTO">
+      SELECT * FROM member
+      <if test="searchKeyword!=null and !searchKeyword.equals('')">
+         WHERE
+         <foreach collection="searchField" item="sfield" open="(" close=")"
+            separator="or">
+            ${sfield} like '%'||#{searchKeyword}||'%'
+            </foreach>
+      </if>
+       ORDER BY regidate DESC
+   </select>
+   
+   <insert id="insert">
+      INSERT INTO member (id, pass, name) VALUES
+         (#{param1}, #{param2}, #{param3})
+   </insert>
+   
+   <select id="selectOne"
+      resultType="com.edu.springboot.jdbc.MemberDTO">
+      SELECT * FROM member WHERE id=#{_id}
+   </select>
+   
+   <update id="update" parameterType="java.util.HashMap">
+      UPDATE member SET pass=#{m_pass}, name=#{m_name} WHERE id=#{m_id}
+   </update>
+   
+   <delete id="delete">
+      DELETE FROM member WHERE id=#{0}
+   </delete>
+   
+   
+</mapper>
+
