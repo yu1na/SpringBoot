@@ -1,4 +1,4 @@
-package com.edu.springboot.utils;
+package utils;
 
 import java.io.File;
 import java.util.UUID;
@@ -8,7 +8,7 @@ public class MyFunctions
 	public static String getuuid()
 	{
 		String uuid = UUID.randomUUID().toString();
-		uuid = uuid.replace("-", "");
+		uuid = uuid.replaceAll("-", "");
 		System.out.println("생성된 UUID:" + uuid);
 		return uuid;
 	}
