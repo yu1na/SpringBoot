@@ -112,5 +112,4 @@ public class MainController
 	   System.out.println("글삭제결과:" + result);
 	   return "redirect:list.do";
    }
-   
 }
