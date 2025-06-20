@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %> 
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,7 +9,6 @@
 	</head>
 	<body>
 		<h2>회원등록</h2>
-		<!-- 등록폼에서 post로 전송시 컨트롤러에서 insert 처리를 한다. -->
 		<form action="regist.do" method="post">
 		<table border="1">
 			<tr>

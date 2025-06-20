@@ -156,6 +156,4 @@ function idCheck(fn){
         //입력한 아이디를 수정할 수 없도록 속성을 추가한다. 
         fn.id.readOnly = true;
     }
-}/**
- * 
- */
+}

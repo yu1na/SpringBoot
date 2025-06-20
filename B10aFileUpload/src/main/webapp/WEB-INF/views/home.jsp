@@ -4,19 +4,18 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Spring Boot Project</title>
-		<script src="./js/commons.js"></script>
-		<link rel="stylesheet" href="./css/main.css" />
+		<title>home 화면</title>
 	</head>
 	<body>
-		<h2>스프링 부트 프로젝트</h2>
+		<h2>스프링 부트 프로젝트-파일업로드</h2>
 		<ul>
 			<li><a href="/">루트</a></li>
 		</ul>
 		
-		<h2>파일업로드</h2>
+		<h2>파일 업로드</h2>
 		<ul>
 			<li><a href="/fileUpload.do">파일업로드(싱글파일)</a></li>
+			<br/>
 			<li><a href="/multiFileUpload.do">파일업로드(멀티파일)</a></li>
 		</ul>
 	</body>

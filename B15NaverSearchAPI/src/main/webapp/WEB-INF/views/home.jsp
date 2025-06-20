@@ -7,10 +7,10 @@
 		<title>home 화면</title>
 	</head>
 	<body>
-		<h2>Naver 검색 API활용</h2>
+		<h2>Naver 검색 API 활용</h2>
 		<ul>
 			<li><a href="/">루트</a></li>
-			<li><a href="/NaverSearchMain.do">검색바로가기</a></li>
+			<li><a href="/NaverSearchMain.do">검색 바로 가기</a></li>
 		</ul>
 	</body>
 </html>

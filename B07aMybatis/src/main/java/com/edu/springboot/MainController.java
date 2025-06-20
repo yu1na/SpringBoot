@@ -1,23 +1,26 @@
 package com.edu.springboot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.jdbc.IMemberService;
 import com.edu.springboot.jdbc.MemberDTO;
-
 
 @Controller
 public class MainController
 {	
 	/*
-		Service역할의 인터페이스의 빈을 자동으로 주입받는다. 이를 통해 
-		DAO의 메서드를 호출한다. 
+		서비스 인터페이스를 통해 Mapper의 메서드를 호출하므로 여기서 
+		자동주입 받아서 준비한다. 해당 인터페이스는 @Mapper 어노테이션이
+		부착되어 있으므로 컨테이너가 시작될때 자동으로 빈이 생성된다. 
 	 */
 	@Autowired
 	IMemberService dao;
@@ -33,28 +36,22 @@ public class MainController
 	public String member2(Model model)
 	{
 		/*
-		DAO에서 회원레코드를 추가한 List를 반환해주면 이를 Model객체에 
-		저장한 후 View로 포워드한다. 
-		 */
+			dao.select() : 서비스 인터페이스의 추상메서드를 호출한다. 
+				그러면 인터페이스와 연결된 Mapper파일에 정의된 특정
+				엘리먼트가 호출되어 실행된다. 
+		*/
 		model.addAttribute("memberList", dao.select());
 		return "list";
 	}
 	
-	//회원정보추가 
 	/*
-		@RequestMapping 어노테이션을 통해 매핑할때 전송방식과 상관없이
-		설정하려면 프로퍼티 없이 요청명만 기술하면된다. 
-		하지만 아래와 같이 get/post 방식으로 구분하려면 value 프로퍼티에
-		요청명을, method 프로퍼티에 전송방식을 명시하면된다. 
-	 */	
-	/*
-	스프링부터 3.x에서는 매핑시 @GetMapping/@PostMapping의 사용을 
-	권고하고 있다. 
+		회원등록 : 가입폼은 get방식, 등록처리는 post방식으로 매핑한다. 
 	 */
 //	@RequestMapping(value = "/regist.do", method = RequestMethod.GET)
 	@GetMapping("/regist.do")
 	public String member1()
 	{
+		//등록 페이지를 포워드만 처리 
 		return "regist";
 	}
 	
@@ -62,47 +59,69 @@ public class MainController
 	@PostMapping("/regist.do")
 	public String member6(MemberDTO memberDTO)
 	{
-		//전송된 폼값은 DTO로 한꺼번에 받은 후 DAO를 호출한다. 
+		//전송된 폼값을 커맨드객체를 통해 일괄적으로 받은 후 DAO의 메서드 호출 
 		int result = dao.insert(memberDTO);
-		//insert의 결과이므로 1이면 성공, 0이면 실패로 판단 
 		if(result==1) System.out.println("입력되었습니다.");
-		/* 
-		View의 경로를 반환하는게 기본이지만, 아래와 같이 redirect:를 
-		추가하면 해당 요청명으로 이동하게된다. 
-		*/
+		//입력에 성공하면 목록으로 이동한다. 
 		return "redirect:list.do";
 	}
 	
-	//회원정보수정1 : 기존 회원정보 불러오기 
+	//회원정보수정1 : 기존 회원정보를 가져와서 수정폼 구성 
 //	@RequestMapping(value = "/edit.do", method = RequestMethod.GET)
 	@GetMapping("/edit.do")
 	public String member3(MemberDTO memberDTO, Model model)
 	{
-		//아이디를 파라미터로 받아서 회원정보를 인출한다. 
+		//기존 레코드를 얻어온 후 View로 전달 
 		memberDTO = dao.selectOne(memberDTO);
 		model.addAttribute("dto", memberDTO);
 		
 		return "edit";
 	}
 	
-	//회원정보수정2 : 수정처리 
+	//회원정보수정2 : 수정된 내용을 통해 레코드 업데이트 처리 
 //	@RequestMapping(value = "edit.do", method = RequestMethod.POST)
 	@PostMapping("edit.do")
 	public String member7(MemberDTO memberDTO)
 	{
-		//전송된 폼값은 커맨드객체를 통해 한꺼번에 받아서 DAO로 전달
 		int result = dao.update(memberDTO);
-		//결과가 1이면 수정성공
 		if (result==1) System.out.println(" 수정되었습니다.");
-		//상세보기 페이지가 없으므로 수정 후 목록으로 이동 
 		return "redirect:list.do";	
 	}
 	
+	//회원삭제 
+//	@RequestMapping("/delete.do")
+//	public String member4(MemberDTO memberDTO)
+//	{
+//		//아이디를 파라미터로 받은 후 delete 메서드 호출
+//		int result = dao.delete(memberDTO);
+//		if (result==1) System.out.println("삭제되었습니다.");
+//		return "redirect:list.do";
+//	}
+	
+	//비동기 방식으로 회원 삭제 
 	@RequestMapping("/delete.do")
-	public String member4(MemberDTO memberDTO)
+	/* 컨트롤러에서 반환하는 String은 View의 경로를 의미하지만, 이 어노테이션이
+	부착되면 반환하는 문자열을 웹브라우저에 즉시 출력한다. 
+	또한 Map을 반환하면 JSON객체형식, List를 반환하면 JSON배열형식으로 출력하게
+	된다. */
+	@ResponseBody
+	public Map<String, String> member4(MemberDTO memberDTO)
 	{
+		//회원정보 삭제 처리 
 		int result = dao.delete(memberDTO);
-		if(result==1) System.out.println("삭제되었습니다");
-		return "redirect:list.do";
+		//콜백데이터 생성을 위해 Map 인스턴스 선언 
+		Map<String, String> map = new HashMap<>();
+		//성공여부에 따라 콜백데이터 처리 
+		if (result==1)
+		{
+			System.out.println("삭제되었습니다.");
+			map.put("result", "success");
+		} else
+		{
+			System.out.println("삭제실패");
+			map.put("result", "fail");
+		}
+		//Map을 반환한다. 그러면 화면상에는 JSON 객체가 출력된다. 
+		return map;
 	}
 }

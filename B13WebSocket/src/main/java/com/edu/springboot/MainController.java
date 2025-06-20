@@ -15,18 +15,20 @@ public class MainController
 	}
 	
 	@GetMapping("/")
-	public String home() {
+	public String home()
+	{
 		return "home";
 	}
 	
 	@GetMapping("/chatMain.do")
-	public String chatMain() {
+	public String chatMain()
+	{
 		return "chatMain";
 	}
 	
 	@GetMapping("/chatWindow.do")
-	public String chatWindow() {
+	public String chatWindow()
+	{
 		return "chatWindow";
 	}
-	
 }

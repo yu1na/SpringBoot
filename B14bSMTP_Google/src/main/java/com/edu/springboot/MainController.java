@@ -17,19 +17,22 @@ public class MainController
 	}
 	
 	@GetMapping("/")
-	public String home() {
+	public String home()
+	{
 		return "home";
 	}
 	
 	@GetMapping("/emailSendMain.do")
-		public String emailSendMain()
-		{
-			return "emailSendMain";
-		}
+	public String emailSendMain()
+	{
+		return "emailSendMain";
+	}
 	
+	//이메일 발송을 처리하는 인스턴스 자동주입 
 	@Autowired
 	EmailSending email;
 	
+	//내용 입력후 전송했을때 post방식의 폼값을 받아 실제 메일 발송 
 	@PostMapping("/emailSendProcess.do")
 	public String emailSendProcess(InfoDTO infoDTO)
 	{

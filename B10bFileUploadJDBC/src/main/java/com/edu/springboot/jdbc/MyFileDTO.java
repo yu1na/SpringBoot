@@ -11,4 +11,4 @@ public class MyFileDTO
 	private Object ofile;
 	private String sfile;
 	private java.sql.Date postdate;
-}	
+}

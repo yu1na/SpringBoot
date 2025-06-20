@@ -10,7 +10,7 @@
 		<h2>Google SMTP 서버를 활용한 이메일 전송</h2>
 		<ul>
 			<li><a href="/">루트</a></li>
-			<li><a href="/emailSendMain.do">이메일보내기</a></li>
+			<li><a href="/emailSendMain.do">이메일 보내기</a></li>
 		</ul>
 	</body>
 </html>

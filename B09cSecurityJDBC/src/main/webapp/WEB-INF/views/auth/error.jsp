@@ -4,11 +4,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>error</title>
 	</head>
 	<body>
 		<h2>로그인 실패</h2>
-		${errorMsg }
+		${errorMsg } <br/>
 		<a href="login.do">로그인</a>
 	</body>
 </html>

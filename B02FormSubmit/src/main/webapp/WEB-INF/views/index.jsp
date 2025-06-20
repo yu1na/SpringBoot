@@ -7,9 +7,9 @@
 		<title>index</title>
 	</head>
 	<body>
-		<%
-			out.println("<h2>index.jsp</h2>");
-			out.println("Hello index");
-		%>
+	<%
+		out.println("<h2>index.jsp</h2>");
+		out.println("Hello ~index!!");
+	%>
 	</body>
 </html>

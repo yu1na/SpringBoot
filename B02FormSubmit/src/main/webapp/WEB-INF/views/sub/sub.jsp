@@ -7,9 +7,9 @@
 		<title>sub</title>
 	</head>
 	<body>
-		<%
-			out.println("<h2>sub.jsp</h2>");
-			out.println("Hello sub");
-		%>
+	<%
+		out.println("<h2>sub.jsp</h2>");
+		out.println("Hi ~sub..!!");
+	%>
 	</body>
 </html>

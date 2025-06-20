@@ -4,25 +4,25 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>회원가입 폼</title>
+		<title>회원가입폼</title>
 		<link rel="stylesheet" href="/css/memberStyle.css" />
 		<script src="./js/memberValidate.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script>
-			function postOpen(){    
-			    new daum.Postcode({
-			        oncomplete: function(data) {
-			            console.log(data);
-			            console.log(data.zonecode);
-			            console.log(data.address);
-			            
-			            let frm = document.myform;
-			            frm.zipcode.value = data.zonecode;
-			            frm.addr1.value = data.address;
-			            frm.addr2.focus();
-			        }
-			    }).open();
-			}
+		function postOpen(){    
+		    new daum.Postcode({
+		        oncomplete: function(data) {
+		            console.log(data);
+		            console.log(data.zonecode);
+		            console.log(data.address);
+		            
+		            let frm = document.myform;
+		            frm.zipcode.value = data.zonecode;
+		            frm.addr1.value = data.address;
+		            frm.addr2.focus();
+		        }
+		    }).open();
+		}
 		</script>
 	</head>
 	<body>
@@ -176,7 +176,6 @@
             </tr>
         </table>       
     </form>
-    
     <div id="id_loading">
         <img src="../img/loading.gif" style="width:40%;" />
     </div>

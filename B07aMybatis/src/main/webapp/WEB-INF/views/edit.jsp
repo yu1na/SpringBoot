@@ -10,8 +10,6 @@
 	<body>
 		<h2>회원수정</h2>
 		<form action="edit.do" method="post">
-		<!-- 아이디는 회원레코드에서 식별자(일련번호)로 사용되므로 수정할 수 
-		없도록 readonly 속성을 추가해준다. -->
 		<table border="1">
 			<tr>
 				<td>아이디(수정불가)</td>

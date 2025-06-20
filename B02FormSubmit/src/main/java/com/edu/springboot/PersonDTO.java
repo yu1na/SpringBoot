@@ -1,6 +1,5 @@
 package com.edu.springboot;
 
-
 public class PersonDTO
 {
 	private String name;
@@ -22,6 +21,4 @@ public class PersonDTO
 	{
 		this.age = age;
 	}
-	
-	
 }

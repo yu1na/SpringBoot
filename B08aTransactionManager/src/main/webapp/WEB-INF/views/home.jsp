@@ -7,7 +7,7 @@
 		<title>home 화면</title>
 	</head>
 	<body>
-		<h2>스프링 부트 프로젝트</h2>
+		<h2>스프링 부트 프로젝트-트랜잭션</h2>
 		<ul>
 			<li><a href="/">루트</a></li>
 		</ul>

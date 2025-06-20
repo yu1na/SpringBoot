@@ -5,39 +5,38 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>회원수정</title>
+		<title>게시판수정</title>
 		<script type="text/javascript">
-       function validateForm(frm) {
-         const writer = frm.name.value.trim();
-         if (!writer) {
-           alert('아이디를 입력하세요');
-           frm.name.focus();
-           return false;
-         }
-
-         const title = frm.title.value.trim();
-         if (!title) {
-           alert('제목을 입력하세요');
-           frm.title.focus();
-           return false;
-         }
-         
-         const content = frm.content.value.trim();
-         if (!content) {
-           alert('내용을 입력하세요');
-           frm.content.focus();
-           return false;
-         }
-
-         return true;
-       }
-     </script>
+		function validateForm(form) { 
+		    if (form.name.value == "") {
+		        alert("작성자를 입력하세요.");
+		        form.name.focus();
+		        return false;
+		    }
+		    if (form.title.value == "") {
+		        alert("제목을 입력하세요.");
+		        form.title.focus();
+		        return false;
+		    }
+		    if (form.content.value == "") {
+		        alert("내용을 입력하세요.");
+		        form.content.focus();
+		        return false;
+		    }
+		    /* if (form.pass.value == "") {
+		        alert("비밀번호를 입력하세요.");
+		        form.pass.focus();
+		        return false;
+		    } */
+		}
+		</script>
 	</head>
 	<body>
-	<h2>게시판 수정(Mybatis)</h2>
-	<form name="writeFrm" method="post"
-		action="./edit.do" onsubmit="return validateForm(this);">
-	<input type="hid-den" name="idx" value="${boardDTO.idx }" />
+		<h2>게시판 수정(Mybatis)</h2>
+		<form name="writeFrm" method="post"
+			action="./edit.do" onsubmit="return validateForm(this);">
+		<!-- 수정할 게시물의 일련번호를 전송해야 하므로 hidden 박스가 하나 필요하다. -->
+		<input type="hidden" name="idx" value="${boardDTO.idx }" />
 		<table border="1" width="90%">
 		    <tr>
 		        <td>작성자</td>
@@ -76,7 +75,6 @@
 		        </td>
 		    </tr>
 		</table>    
-	</form>
-</body>
-
+		</form>
+	</body>
 </html>

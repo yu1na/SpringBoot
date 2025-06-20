@@ -1,27 +1,25 @@
 #포트설정
 server:
-  port:  '8081'
+  port: '8081'
 
 #JSP설정
-spring:  
+spring:
   mvc:
     view:
-      prefix:  /WEB-INF/views/
+      prefix: /WEB-INF/views/
       suffix: .jsp
-
 #SMTP설정
   mail:
-    host:  smtp.gmail.com
-    port:  '587'
-    username: yunah1852@gmail.com
-    password: iaha yxiy ikvy xcmg
-    properties:  
+    host: smtp.gmail.com
+    port: '587'
+    username: kmdadoo2@gmail.com
+    password: 받은 비밀번호
+    properties:
       mail:
-        debug:  'true'
-        smtp:  
-          connectiontimeout:  '5000'
-          auth:  'false'
+        debug: 'true'
+        smtp:
+          connectiontimeout: '5000'
+          auth: 'false'
           starttls:
-            enable:  'true'
-            required:  'true'
-      
+            enable: 'true'
+            required: 'true'

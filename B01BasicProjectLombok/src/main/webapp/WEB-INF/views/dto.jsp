@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>lombok 확인하기</title>
 	</head>
 	<body>
 		<h2>Spring boot Project(with Lombok)</h2>
@@ -13,10 +13,10 @@
 		</ul>
 		<h3>컨트롤러에서 저장한 DTO객체 출력하기</h3>
 		<p>
-			이름 : ${dto.name }<br>
-			아이디 : ${dto.id }<br>
-			비밀번호 : ${dto.pass }<br>
-			등록일 : ${dto.regidate }<br>
+			이름 : ${dto.name } <br/>
+			아이디 : ${dto.id } <br/>
+			비밀번호 : ${dto.pass } <br/>
+			등록일 : ${dto.regidate } 
 		</p>
 	</body>
 </html>

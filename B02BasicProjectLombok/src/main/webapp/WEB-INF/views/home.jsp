@@ -7,7 +7,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<h2>Spring Boot 프로젝트</h2>
+		<h2>Spring boot 프로젝트</h2>
 		<ul>
 			<li><a href="/">루트</a></li>
 		</ul>

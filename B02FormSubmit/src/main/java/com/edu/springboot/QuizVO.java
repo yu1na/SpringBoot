@@ -2,6 +2,7 @@ package com.edu.springboot;
 
 public class QuizVO
 {
+	//멤버변수
 	private String id;
 	private String pass1;
 	private String name;
@@ -147,6 +148,4 @@ public class QuizVO
 	{
 		this.etc_no2 = etc_no2;
 	}
-	
-	
 }

@@ -10,8 +10,8 @@ public class DTOController
 	@GetMapping("/dto.do")
 	public String home(MemberDTO memberDTO, Model model)
 	{
-		memberDTO.setId("yuna");
-		memberDTO.setName("유나");
+		memberDTO.setId("hrdnet");
+		memberDTO.setName("직업훈련포탈");
 		memberDTO.setPass("1234");
 		memberDTO.setRegidate("2025-06-11");
 		

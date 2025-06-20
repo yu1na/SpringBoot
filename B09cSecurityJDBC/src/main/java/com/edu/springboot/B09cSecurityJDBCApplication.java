@@ -11,7 +11,6 @@ public class B09cSecurityJDBCApplication {
 		SpringApplication.run(B09cSecurityJDBCApplication.class, args);
 		
 //		String passwd = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("1234");
-//	    System.out.println(passwd);
+//		System.out.println(passwd);
 	}
-
 }
