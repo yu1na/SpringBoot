@@ -14,12 +14,13 @@ function MyWrite(props) {
             let title = event.target.title.value;
             let content = event.target.content.value;
 
+            // 파라미터저장
             const params = new URLSearchParams();
             params.set('id', id);
             params.set('title', title);
             params.set('content', content);
 
-        
+            //post 방식으로 데이터 설정
         const data = {
             method: 'POST',
             headers: {
@@ -27,6 +28,7 @@ function MyWrite(props) {
             },
             body: params
         };
+          //Spring 서버와 통신
           fetch('http://localhost:8586/restBoardWrite.do', data)
               .then((result)=>{
                   return result.json();

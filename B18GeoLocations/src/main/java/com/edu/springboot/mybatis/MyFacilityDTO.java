@@ -5,10 +5,13 @@ import lombok.Data;
 @Data
 public class MyFacilityDTO
 {
-	private String hp_name;
-	private String hp_sido;
-	private String hp_gugun;
-	private String hp_addr;
-	private String hp_url;
-	private String hp_latitude;
+	private String hp_name;	//병원명
+	private String hp_sido;	//시도
+	private String hp_gugun;	//구군
+	private String hp_addr;	//주소
+	private String hp_url;	//참조URL 
+	private String hp_latitude;	//위도
+	private String hp_longitude;	//경도
+	private String disKM;	//거리(반경)
+	private String rNum;	
 }

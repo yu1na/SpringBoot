@@ -14,7 +14,7 @@ function MyView(props) {
            return result.json();
         })
         .then((json)=>{
-            console.error("결과");
+            //console.error("결과");
             console.log(json);
             setBoardRow(json);
         });

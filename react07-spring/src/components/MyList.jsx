@@ -9,11 +9,11 @@ function MyList(props) {
     fetch("http://localhost:8586/restBoardList.do?pageNum=1")
     .then((result)=>{
         // console.error("결과1");
-        // console.log(result);
+        console.log(result);
         return result.json();
     })
     .then((json)=>{
-        console.error("결과");
+        //console.error("결과");
         console.log(json);
         setmyJSON(json);
     });

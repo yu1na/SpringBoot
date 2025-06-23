@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.mybatis.ISearchRadius">
+
+    <!-- 반경 내 시설 수 조회 -->
+    <select id="searchCount" resultType="int">
+        SELECT COUNT(*)
+        FROM global_facility
+        WHERE TRUNC(TO_NUMBER(DISTANCE_WGS84(#{param2}, #{param3},
+            hp_latitude, hp_longitude)), 5) <![CDATA[<=]]> #{param1}
+    </select>
+
+    <!-- 반경 내 시설 목록 조회 (페이징 포함) -->
+    <select id="searchRadius" resultType="com.edu.springboot.mybatis.MyFacilityDTO">
+        SELECT * FROM (
+            SELECT Tb.*, ROWNUM rNum FROM (
+                SELECT
+                    hp_name, hp_sido, hp_gugun, hp_addr, hp_url,
+                    hp_latitude, hp_longitude,
+                    TRUNC(TO_NUMBER(DISTANCE_WGS84(#{param2}, #{param3},
+                        hp_latitude, hp_longitude)), 5) AS disKM
+                FROM global_facility
+                WHERE TRUNC(TO_NUMBER(DISTANCE_WGS84(#{param2}, #{param3},
+                    hp_latitude, hp_longitude)), 5) <![CDATA[<=]]> #{param1}
+                ORDER BY disKM ASC
+            ) Tb
+        )
+        WHERE rNum BETWEEN #{param4} AND #{param5}
+    </select>
+
+</mapper>
